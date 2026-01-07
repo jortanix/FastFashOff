@@ -11,7 +11,7 @@ from config import LOGOS, IMAGES, LOGO_DIR, IMAGE_DIR, MIN_MATCHES, SEUIL_DISTAN
 from image_processing import load_image, filter_image, resize_image
 from logo_detection import (
     extraire_features_orb,
-    matcher_logos,
+    matcher_logos_avec_ratio,
     filtrer_bons_matches,
     valider_detection,
     dessiner_matches

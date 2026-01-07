@@ -20,24 +20,33 @@ def extraire_features_orb(img, nfeatures=ORB_FEATURES):
     return kp, des
 
 
-def matcher_logos(des_logo, des_image):
+def matcher_logos_avec_ratio(des_logo, des_image, ratio=0.75):
     """
-    Effectue le matching entre descripteurs de logo et d'image.
+    Matching avec ratio test pour éliminer les faux positifs.
     
     Args:
         des_logo: descripteurs du logo
         des_image: descripteurs de l'image
+        ratio: seuil du ratio test (0.75 recommandé)
         
     Returns:
-        Liste de matches triés par distance
+        Liste de bons matches
     """
     if des_logo is None or des_image is None:
         return []
     
-    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-    matches = bf.match(des_logo, des_image)
-    matches = sorted(matches, key=lambda x: x.distance)
-    return matches
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING)
+    matches = bf.knnMatch(des_logo, des_image, k=2)
+    
+    # Ratio test de Lowe
+    good_matches = []
+    for match_pair in matches:
+        if len(match_pair) == 2:
+            m, n = match_pair
+            if m.distance < ratio * n.distance:
+                good_matches.append(m)
+    
+    return sorted(good_matches, key=lambda x: x.distance)
 
 
 def filtrer_bons_matches(matches, seuil=SEUIL_DISTANCE):

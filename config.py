@@ -25,6 +25,6 @@ IMAGES = [
 ]
 
 # Paramètres de détection
-SEUIL_DISTANCE = 50        # distance maximale pour un bon match
-MIN_MATCHES = 10           # nombre minimum de matches pour valider une détection
+SEUIL_DISTANCE = 50      # distance maximale pour un bon match
+MIN_MATCHES = 10          # nombre minimum de matches pour valider une détection
 ORB_FEATURES = 1000        # nombre de features ORB à extraire
