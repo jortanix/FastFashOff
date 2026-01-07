@@ -59,7 +59,7 @@ def analyser_dataset_complet(afficher_images=True, generer_rapport=False):
             continue
 
         # Matching
-        matches = matcher_logos(des0, des1)
+        matches = matcher_logos_avec_ratio(des0, des1)
         good_matches = filtrer_bons_matches(matches, SEUIL_DISTANCE)
         
         # Validation de la détection
@@ -133,7 +133,7 @@ def analyser_image_specifique(nom_image, afficher_image=True):
         if des0 is None or des1 is None:
             continue
         
-        matches = matcher_logos(des0, des1)
+        matches = matcher_logos_avec_ratio(des0, des1)
         good_matches = filtrer_bons_matches(matches, SEUIL_DISTANCE)
         
         if valider_detection(matches, MIN_MATCHES, SEUIL_DISTANCE):
