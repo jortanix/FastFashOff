@@ -1,6 +1,6 @@
 #Base de données des marques de fast fashion et raisons de boycott
 
-# Informations complètes sur chaque marque
+#Informations complètes pour chaque marque
 MARQUES_INFO = {
     "Bershka": {
         "nom_complet": "Bershka (groupe Inditex)",
@@ -69,22 +69,22 @@ MARQUES_INFO = {
         ],
         "faits": "ONG documentent 17h/jour en usines chinoises, salaires bas, produits chimiques sans protection. Coton Xinjiang lié au travail forcé sans preuves suffisantes. Modèle fast-fashion impactant malgré efforts RSE.",
         "alternatives": "Réduire les achats chez Uniqlo, privilégier des marques plus transparentes et certifiées (label GOTS, Fair Wear, etc.) ou la seconde main."
-  },
-  "Pull & Bear": {
-  "nom_complet": "Pull & Bear (Inditex Group)",
-  "raisons": [
-    "Modèle fast-fashion avec surproduction et tendances jetables",
-    "Conditions de travail précaires : semaines de 60-70h, salaires inférieurs au minimum vital dans les usines (ex. Bangladesh)",
-    "Empreinte carbone massive (Inditex parmi les plus gros émetteurs, pas sur la bonne trajectoire des objectifs)",
-    "Utilisation limitée de matériaux éco-friendly, déchets textiles élevés",
-    "Produits chimiques toxiques dans les vêtements, accusations de greenwashing"
-  ],
-  "faits": "Éthique faible : audits/salaires insuffisants, usines à risques. CO2 élevé, peu durable, surproduction/déchets [web:16][web:17][web:21].",
-  "alternatives": "Boycott ou limitation, seconde main, marques certifiées (GOTS, Fair Wear) ou slow fashion."
-}
+    },
+    "Pull & Bear": {
+        "nom_complet": "Pull & Bear (Inditex Group)",
+        "raisons": [
+            "Modèle fast-fashion avec surproduction et tendances jetables",
+            "Conditions de travail précaires : semaines de 60-70h, salaires inférieurs au minimum vital dans les usines (ex. Bangladesh)",
+            "Empreinte carbone massive (Inditex parmi les plus gros émetteurs, pas sur la bonne trajectoire des objectifs)",
+            "Utilisation limitée de matériaux éco-friendly, déchets textiles élevés",
+            "Produits chimiques toxiques dans les vêtements, accusations de greenwashing"
+            ],
+        "faits": "Éthique faible : audits/salaires insuffisants, usines à risques. CO2 élevé, peu durable, surproduction/déchets [web:16][web:17][web:21].",
+        "alternatives": "Boycott ou limitation, seconde main, marques certifiées (GOTS, Fair Wear) ou slow fashion."
+    }
 }
 
-# Mapping nom de fichier logo dans MARQUES_INFO
+#Dictionnaire pour relier les noms de fichiers de logos aux clés des marques
 LOGO_TO_MARQUE = {
     "Bershka-logo.png": "Bershka",
     "primark-logo.png": "Primark",
