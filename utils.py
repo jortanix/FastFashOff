@@ -1,32 +1,13 @@
-"""Fonctions utilitaires pour FastFashOff."""
+#Fonctions utilitaires
 
 from pathlib import Path
 
 
 def verifier_fichier_existe(chemin):
-    """
-    Vérifie si un fichier existe.
-    
-    Args:
-        chemin: chemin du fichier (Path ou str)
-        
-    Returns:
-        True si existe, False sinon
-    """
     return Path(chemin).exists()
 
 
 def lister_fichiers(dossier, extensions=None):
-    """
-    Liste les fichiers d'un dossier avec extensions spécifiques.
-    
-    Args:
-        dossier: chemin du dossier (Path ou str)
-        extensions: liste d'extensions (ex: ['.png', '.jpg']) ou None pour tout
-        
-    Returns:
-        Liste de chemins (Path)
-    """
     dossier = Path(dossier)
     
     if not dossier.exists():
@@ -43,42 +24,18 @@ def lister_fichiers(dossier, extensions=None):
 
 
 def creer_dossier_si_absent(chemin):
-    """
-    Crée un dossier s'il n'existe pas.
-    
-    Args:
-        chemin: chemin du dossier (Path ou str)
-        
-    Returns:
-        Path du dossier créé
-    """
     dossier = Path(chemin)
     dossier.mkdir(parents=True, exist_ok=True)
     return dossier
 
 
 def obtenir_nom_sans_extension(chemin):
-    """
-    Récupère le nom d'un fichier sans son extension.
-    
-    Args:
-        chemin: chemin du fichier (Path ou str)
-        
-    Returns:
-        Nom du fichier sans extension (str)
-    """
     return Path(chemin).stem
 
 
 def valider_structure_projet():
-    """
-    Vérifie que la structure du projet est correcte.
-    
-    Returns:
-        (bool, str): (valide, message d'erreur si invalide)
-    """
     from config import BASE_DIR, LOGO_DIR, IMAGE_DIR, LOGOS, IMAGES
-    
+
     # Vérifier l'existence des dossiers
     if not LOGO_DIR.exists():
         return False, f"Dossier des logos introuvable : {LOGO_DIR}"
@@ -102,12 +59,6 @@ def valider_structure_projet():
 
 
 def afficher_statistiques_detection(resultats):
-    """
-    Calcule et affiche des statistiques de détection.
-    
-    Args:
-        resultats: liste de dictionnaires avec clés 'logo', 'matches', 'distance_min'
-    """
     if not resultats:
         print("Aucune détection à analyser.")
         return
@@ -120,7 +71,7 @@ def afficher_statistiques_detection(resultats):
     distance_min = min(distances)
     distance_max = max(distances)
     
-    print("\n📈 Statistiques de détection:")
+    print("\nStatistiques de détection:")
     print(f"   Nombre de détections : {len(resultats)}")
     print(f"   Matches total : {total_matches}")
     print(f"   Moyenne matches/détection : {moyenne_matches:.1f}")
@@ -130,15 +81,6 @@ def afficher_statistiques_detection(resultats):
 
 
 def formater_temps(secondes):
-    """
-    Formate un temps en secondes en format lisible.
-    
-    Args:
-        secondes: temps en secondes (float)
-        
-    Returns:
-        Chaîne formatée (str)
-    """
     if secondes < 1:
         return f"{secondes*1000:.0f}ms"
     elif secondes < 60:
@@ -150,17 +92,6 @@ def formater_temps(secondes):
 
 
 def sauvegarder_resultat(chemin_sortie, img, nom_fichier):
-    """
-    Sauvegarde une image de résultat.
-    
-    Args:
-        chemin_sortie: dossier de sortie (Path ou str)
-        img: image à sauvegarder (numpy array)
-        nom_fichier: nom du fichier de sortie
-        
-    Returns:
-        True si succès, False sinon
-    """
     import cv2
     
     chemin_sortie = Path(chemin_sortie)
@@ -177,15 +108,6 @@ def sauvegarder_resultat(chemin_sortie, img, nom_fichier):
 
 
 def charger_image_depuis_url(url):
-    """
-    Charge une image depuis une URL (pour extension future).
-    
-    Args:
-        url: URL de l'image
-        
-    Returns:
-        Image (numpy array) ou None si erreur
-    """
     try:
         import urllib.request
         import cv2
@@ -203,13 +125,6 @@ def charger_image_depuis_url(url):
 
 
 def generer_rapport_markdown(marques_detectees, fichier_sortie="rapport_detection.md"):
-    """
-    Génère un rapport Markdown des détections.
-    
-    Args:
-        marques_detectees: liste de détections
-        fichier_sortie: nom du fichier de sortie
-    """
     from data_marques import LOGO_TO_MARQUE, MARQUES_INFO
     from datetime import datetime
     
@@ -240,4 +155,4 @@ def generer_rapport_markdown(marques_detectees, fichier_sortie="rapport_detectio
     with open(fichier_sortie, 'w', encoding='utf-8') as f:
         f.write(contenu)
     
-    print(f"✓ Rapport généré : {fichier_sortie}")
+    print(f"Rapport généré : {fichier_sortie}")

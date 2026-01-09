@@ -1,4 +1,4 @@
-"""Base de données des marques de fast fashion et raisons de boycott."""
+#Base de données des marques de fast fashion et raisons de boycott
 
 # Informations complètes sur chaque marque
 MARQUES_INFO = {
@@ -57,14 +57,40 @@ MARQUES_INFO = {
         ],
         "faits": "Enquêtes récentes révèlent des conditions proches de l'esclavage moderne. Aucune transparence sur la chaîne de production.",
         "alternatives": "Boycott total recommandé, privilégier qualité et durabilité"
-    }
+    },
+    "Uniqlo": {
+        "nom_complet": "Uniqlo (groupe Fast Retailing)",
+        "raisons": [
+            "Marque de fast-fashion (production de masse, renouvellement rapide des collections)",
+            "Enquêtes en Chine montrant des heures supplémentaires massives, salaires très bas et conditions proches du travail en atelier de misère",
+            "Accusations de travail forcé dans la chaîne de coton (Xinjiang), manque de preuves solides d’absence de travail forcé",
+            "Empreinte carbone élevée liée à un modèle de production globalisé, avec surproduction et déchets textiles",
+            "Utilisation de matières animales (laine, cuir, soie) et absence de certification généralisée sur les textiles, accusations de greenwashing"
+        ],
+        "faits": "ONG documentent 17h/jour en usines chinoises, salaires bas, produits chimiques sans protection. Coton Xinjiang lié au travail forcé sans preuves suffisantes. Modèle fast-fashion impactant malgré efforts RSE.",
+        "alternatives": "Réduire les achats chez Uniqlo, privilégier des marques plus transparentes et certifiées (label GOTS, Fair Wear, etc.) ou la seconde main."
+  },
+  "Pull & Bear": {
+  "nom_complet": "Pull & Bear (Inditex Group)",
+  "raisons": [
+    "Modèle fast-fashion avec surproduction et tendances jetables",
+    "Conditions de travail précaires : semaines de 60-70h, salaires inférieurs au minimum vital dans les usines (ex. Bangladesh)",
+    "Empreinte carbone massive (Inditex parmi les plus gros émetteurs, pas sur la bonne trajectoire des objectifs)",
+    "Utilisation limitée de matériaux éco-friendly, déchets textiles élevés",
+    "Produits chimiques toxiques dans les vêtements, accusations de greenwashing"
+  ],
+  "faits": "Éthique faible : audits/salaires insuffisants, usines à risques. CO2 élevé, peu durable, surproduction/déchets [web:16][web:17][web:21].",
+  "alternatives": "Boycott ou limitation, seconde main, marques certifiées (GOTS, Fair Wear) ou slow fashion."
+}
 }
 
-# Mapping nom de fichier logo -> clé dans MARQUES_INFO
+# Mapping nom de fichier logo dans MARQUES_INFO
 LOGO_TO_MARQUE = {
     "Bershka-logo.png": "Bershka",
     "primark-logo.png": "Primark",
-    "zara_logo.jpg": "Zara",
+    "zara_logo.png": "Zara",
     "hm-logo.png": "H&M",
-    "Shein-logo.png": "Shein"
+    "Shein-logo.png": "Shein",
+    "uniqlo-logo.png": "Uniqlo",
+    "Pull_Bear-logo.png": "Pull&Bear"
 }

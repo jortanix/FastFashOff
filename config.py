@@ -1,4 +1,4 @@
-"""Configuration et chemins du projet FastFashOff."""
+#Chemins et configuration du projet
 
 from pathlib import Path
 
@@ -11,9 +11,11 @@ IMAGE_DIR = BASE_DIR / "data" / "dataset"
 LOGOS = [
     "Bershka-logo.png",
     "primark-logo.png",
-    "zara_logo.jpg",
+    "zara_logo.png",
     "hm-logo.png",
-    "Shein-logo.png"
+    "Shein-logo.png",
+    "uniqlo-logo.png",
+    "Pull_Bear-logo.png"
 ]
 
 IMAGES = [
