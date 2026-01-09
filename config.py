@@ -2,12 +2,14 @@
 
 from pathlib import Path
 
-# Chemins
+#Chemins permettant d'accéder aux dossiers de logos et d'images en jupiter notebook
+#méthode trouver sur internet : https://docs.python.org/fr/3.13/library/pathlib.html#pathlib.Path.resolve
+
 BASE_DIR = Path(__file__).resolve().parent
 LOGO_DIR = BASE_DIR / "data" / "logo"
 IMAGE_DIR = BASE_DIR / "data" / "dataset"
 
-# Listes des fichiers
+#Listes des fichiers des logos pour les tests
 LOGOS = [
     "Bershka-logo.png",
     "primark-logo.png",
@@ -18,6 +20,8 @@ LOGOS = [
     "Pull_Bear-logo.png"
 ]
 
+
+#Listes des fichiers des images a tester
 IMAGES = [
     "BERSHKA.jpg",
     "PRIMARK.jpg",
@@ -26,7 +30,7 @@ IMAGES = [
     "SHEIN.jpeg"
 ]
 
-# Paramètres de détection
-SEUIL_DISTANCE = 30      # distance maximale pour un bon match
-MIN_MATCHES = 20          # nombre minimum de matches pour valider une détection
-ORB_FEATURES = 1000        # nombre de features ORB à extraire
+#Paramètres de détection pour les méthodes utiliser dans le main
+SEUIL_DISTANCE = 50      #distance maximale pour un bon match
+MIN_MATCHES = 10         #nombre minimum de matches pour valider une détection
+ORB_FEATURES = 1000      #nombre de features ORB à extraire
