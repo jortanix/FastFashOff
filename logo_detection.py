@@ -47,3 +47,30 @@ def dessiner_matches(img_logo, kp_logo, img_cible, kp_cible, matches, nb_matches
         flags=cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS
     )
     return img_matches
+
+def valider_avec_homographie(kp_logo, kp_image, matches, min_inliers=10):
+    """
+    Valide les matches avec une transformation homographique (RANSAC).
+    Retourne (valide, nb_inliers).
+    """
+    if len(matches) < min_inliers:
+        return False, 0
+    
+    import numpy as np
+    
+    # Extraire les points correspondants
+    src_pts = np.float32([kp_logo[m.queryIdx].pt for m in matches]).reshape(-1, 1, 2)
+    dst_pts = np.float32([kp_image[m.trainIdx].pt for m in matches]).reshape(-1, 1, 2)
+    
+    # Trouver l'homographie avec RANSAC
+    M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+    
+    if M is None:
+        return False, 0
+    
+    # Compter les inliers
+    inliers = mask.ravel().sum()
+    ratio_inliers = inliers / len(matches)
+    
+    # Au moins 50% des matches doivent être géométriquement cohérents
+    return ratio_inliers > 0.5, inliers
