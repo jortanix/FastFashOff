@@ -21,14 +21,7 @@ from utils import valider_structure_projet, afficher_statistiques_detection, gen
 
 
 def analyser_dataset_complet(afficher_images=True, generer_rapport=False):
-    """
-    Analyse complète du dataset : détecte tous les logos dans toutes les images.
-    
-    Args:
-        afficher_images: si True, affiche les images de matching avec OpenCV
-        generer_rapport: si True, génère un rapport Markdown
-    """
-    print("\n" + "🔍 FASTFASHOFF - Analyse en cours...".center(70))
+    print("\n FASTFASHOFF - Analyse en cours...".center(70))
     print("="*70 + "\n")
     
     debut = time.time()
@@ -43,7 +36,7 @@ def analyser_dataset_complet(afficher_images=True, generer_rapport=False):
         img = load_image(img_path, grayscale=True)
 
         if imgLogo is None or img is None:
-            print(f"⚠️  Impossible de lire : {LOGOS[i]} ou {IMAGES[i]}")
+            print(f"Impossible de lire : {LOGOS[i]} ou {IMAGES[i]}")
             continue
 
         # Filtrage
@@ -55,7 +48,7 @@ def analyser_dataset_complet(afficher_images=True, generer_rapport=False):
         kp1, des1 = extraire_features_orb(img_filtered)
 
         if des0 is None or des1 is None:
-            print(f"⚠️  Pas de descripteurs pour : {LOGOS[i]} ou {IMAGES[i]}")
+            print(f"Pas de descripteurs pour : {LOGOS[i]} ou {IMAGES[i]}")
             continue
 
         # Matching
@@ -72,10 +65,10 @@ def analyser_dataset_complet(afficher_images=True, generer_rapport=False):
             }
             marques_detectees.append(detection)
             
-            print(f"✓ Logo détecté: {LOGOS[i]}")
-            print(f"  → Bons matches: {len(good_matches)}")
-            print(f"  → Distance minimale: {matches[0].distance:.1f}\n")
-            
+            print(f"Logo détecté: {LOGOS[i]}")
+            print(f"  - Bons matches: {len(good_matches)}")
+            print(f"  - Distance minimale: {matches[0].distance:.1f}\n")
+
             # Affichage visuel
             if afficher_images:
                 img_matches = dessiner_matches(imgLogo_filtered, kp0, img_filtered, kp1, matches, 25)
@@ -84,14 +77,14 @@ def analyser_dataset_complet(afficher_images=True, generer_rapport=False):
             # Affichage des infos de boycott
             afficher_info_boycott(LOGOS[i])
         else:
-            print(f"✗ Pas de détection pour: {LOGOS[i]} vs {IMAGES[i]}")
-            print(f"  → Matches trouvés: {len(good_matches)} (minimum requis: {MIN_MATCHES})\n")
+            print(f"Pas de détection pour: {LOGOS[i]} vs {IMAGES[i]}")
+            print(f"  - Matches trouvés: {len(good_matches)} (minimum requis: {MIN_MATCHES})\n")
     
     # Résumé et statistiques
     temps_ecoule = time.time() - debut
     afficher_resume(marques_detectees)
     afficher_statistiques_detection(marques_detectees)
-    print(f"\n⏱️  Temps d'exécution : {temps_ecoule:.2f}s\n")
+    print(f"\nTemps d'exécution : {temps_ecoule:.2f}s\n")
     
     # Génération du rapport
     if generer_rapport and marques_detectees:
@@ -99,21 +92,14 @@ def analyser_dataset_complet(afficher_images=True, generer_rapport=False):
 
 
 def analyser_image_specifique(nom_image, afficher_image=True):
-    """
-    Analyse une image spécifique et cherche tous les logos dedans.
-    
-    Args:
-        nom_image: nom du fichier image dans data/dataset/
-        afficher_image: si True, affiche les résultats visuels
-    """
     img_path = IMAGE_DIR / nom_image
     img = load_image(img_path, grayscale=True)
     
     if img is None:
-        print(f"❌ Impossible de lire l'image: {nom_image}")
+        print(f"Impossible de lire l'image: {nom_image}")
         return
     
-    print(f"\n🔍 Analyse de: {nom_image}\n")
+    print(f"\nAnalyse de: {nom_image}\n")
     img_filtered = filter_image(img)
     
     marques_trouvees = []
@@ -142,22 +128,22 @@ def analyser_image_specifique(nom_image, afficher_image=True):
                 "matches": len(good_matches),
                 "distance_min": matches[0].distance
             })
-            print(f"✓ {logo_name} détecté ({len(good_matches)} matches)")
+            print(f"{logo_name} détecté ({len(good_matches)} matches)")
             
             if afficher_image:
                 img_matches = dessiner_matches(imgLogo_filtered, kp0, img_filtered, kp1, matches, 25)
                 afficher_image_opencv(img_matches, f"Détection - {logo_name}", 1200, 400)
     
     if marques_trouvees:
-        print(f"\n🚨 {len(marques_trouvees)} marque(s) de fast fashion trouvée(s) dans cette image:\n")
+        print(f"\n{len(marques_trouvees)} marque(s) de fast fashion trouvée(s) dans cette image:\n")
         for detection in marques_trouvees:
             afficher_info_boycott(detection['logo'])
     else:
-        print("\n✅ Aucune marque de fast fashion détectée!")
+        print("\nAucune marque de fast fashion détectée!")
 
 
 def main():
-    """Fonction principale avec gestion des arguments en ligne de commande."""
+    #Fonction principale avec gestion des arguments en ligne de commande
     parser = argparse.ArgumentParser(
         description="FastFashOff - Détection de logos de fast fashion et sensibilisation au boycott"
     )
@@ -210,7 +196,7 @@ def main():
         )
     elif args.mode == "image":
         if not args.image:
-            print("❌ Erreur : spécifiez une image avec --image <nom_fichier>")
+            print("Erreur : spécifiez une image avec --image <nom_fichier>")
             return
         analyser_image_specifique(args.image, afficher_image=not args.no_display)
 
