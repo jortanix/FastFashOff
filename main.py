@@ -11,7 +11,7 @@ from config import LOGOS, IMAGES, LOGO_DIR, IMAGE_DIR, MIN_MATCHES, SEUIL_DISTAN
 from image_processing import load_image, filter_image, resize_image
 from logo_detection import (
     extraire_features_orb,
-    matcher_logos_avec_ratio,
+    matcher_logos,
     filtrer_bons_matches,
     valider_detection,
     dessiner_matches
@@ -119,7 +119,7 @@ def analyser_image_specifique(nom_image, afficher_image=True):
         if des0 is None or des1 is None:
             continue
         
-        matches = matcher_logos_avec_ratio(des0, des1)
+        matches = matcher_logos(des0, des1)
         good_matches = filtrer_bons_matches(matches, SEUIL_DISTANCE)
         
         if valider_detection(matches, MIN_MATCHES, SEUIL_DISTANCE):

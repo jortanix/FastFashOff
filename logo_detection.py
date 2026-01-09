@@ -1,37 +1,16 @@
-"""Détection de logos avec ORB et matching."""
+#Détection de logos avec ORB et matching
 
 import cv2
 from config import ORB_FEATURES, SEUIL_DISTANCE, MIN_MATCHES
 
 
 def extraire_features_orb(img, nfeatures=ORB_FEATURES):
-    """
-    Extrait les keypoints et descripteurs ORB d'une image.
-    
-    Args:
-        img: image en niveaux de gris
-        nfeatures: nombre de features à extraire
-        
-    Returns:
-        (keypoints, descripteurs) ou (None, None) si erreur
-    """
     orb = cv2.ORB_create(nfeatures=nfeatures)
     kp, des = orb.detectAndCompute(img, None)
     return kp, des
 
 
-def matcher_logos_avec_ratio(des_logo, des_image, ratio=0.75):
-    """
-    Matching avec ratio test pour éliminer les faux positifs.
-    
-    Args:
-        des_logo: descripteurs du logo
-        des_image: descripteurs de l'image
-        ratio: seuil du ratio test (0.75 recommandé)
-        
-    Returns:
-        Liste de bons matches
-    """
+def matcher_logos(des_logo, des_image, ratio=0.75):
     if des_logo is None or des_image is None:
         return []
     
