@@ -41,12 +41,15 @@ def valider_detection(matches, min_matches=MIN_MATCHES, seuil=SEUIL_DISTANCE):
 
 
 def dessiner_matches(img_logo, kp_logo, img_cible, kp_cible, matches, nb_matches=25):
-    #On dessine les lignes entre les keypoints correspondants
+    if kp_logo == [] or kp_cible == [] or matches == []:
+        print("pas de keypoints ou pas de matches, aucun dessin possible")
+        return None
     img_matches = cv2.drawMatches(
         img_logo, kp_logo, img_cible, kp_cible, matches[:nb_matches], None,
         flags=cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS
     )
     return img_matches
+
 
 
 def valider_avec_homographie(kp_logo, kp_image, matches, min_inliers=10):
