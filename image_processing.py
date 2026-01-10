@@ -1,4 +1,4 @@
-#Fonctions de traitement d'images
+#fonctions de traitement d'images
 
 import cv2
 import numpy as np
@@ -18,6 +18,8 @@ def resize_image(img, largeur, hauteur):
 
 
 def load_image(chemin, grayscale=True):
+    chemin = str(chemin)
+    data = np.fromfile(chemin, dtype=np.uint8)
     mode = cv2.IMREAD_GRAYSCALE if grayscale else cv2.IMREAD_COLOR
-    img = cv2.imread(str(chemin), mode)
+    img = cv2.imdecode(data, mode)
     return img
